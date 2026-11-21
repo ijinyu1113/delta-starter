@@ -18,6 +18,10 @@ module reset
 module load pytorch-conda
 module list
 
+# The environment built by setup_env.sh (adds transformers etc. on top of the module)
+source .venv/bin/activate
+python3 -c "import transformers; print('transformers', transformers.__version__)"
+
 echo "job $SLURM_JOB_ID on $(hostname), started $(date)"
 nvidia-smi
 

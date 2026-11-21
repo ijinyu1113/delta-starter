@@ -1,0 +1,3 @@
+# Extra libraries on top of the PyTorch that Delta's pytorch-conda module provides.
+# Do not list torch here: pip could replace the GPU build with a CPU one.
+transformers

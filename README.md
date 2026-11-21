@@ -38,7 +38,19 @@ git clone https://github.com/<your-username>/delta-starter.git
 cd delta-starter
 ```
 
-## 3. Find your account name
+## 3. Build the Python environment (once)
+
+```bash
+bash setup_env.sh
+```
+
+This takes a minute or two. It creates a folder `.venv/` holding the extra libraries listed in `requirements.txt` (right now, `transformers`). PyTorch itself comes from Delta's `pytorch-conda` module, so it is not installed again.
+
+You do this on the login node because installing needs the internet and only has to happen once. The job script then switches the environment on with `source .venv/bin/activate` before running your code.
+
+To add a library later: add a line to `requirements.txt` and run `bash setup_env.sh` again.
+
+## 4. Find your account name
 
 ```bash
 accounts
@@ -46,7 +58,7 @@ accounts
 
 Look in the "Project" column for the name ending in `-gpu` (something like `abcd-delta-gpu`). That is the allocation your job is charged to.
 
-## 4. Submit the job
+## 5. Submit the job
 
 ```bash
 sbatch --account=<your-gpu-account> job.slurm
@@ -54,7 +66,7 @@ sbatch --account=<your-gpu-account> job.slurm
 
 Slurm prints `Submitted batch job 1234567`. That number is your job ID.
 
-## 5. Watch the queue
+## 6. Watch the queue
 
 ```bash
 squeue -u $USER
@@ -70,7 +82,7 @@ Other commands you will use:
 | `tail -f logs/slurm-<jobid>.out` | Follow the job's output while it runs (Ctrl-C to stop following). |
 | `sacct -j <jobid>` | Show how a finished job ended (`COMPLETED`, `FAILED`, `TIMEOUT`). |
 
-## 6. Check the output
+## 7. Check the output
 
 ```bash
 cat logs/slurm-<jobid>.out
@@ -81,7 +93,7 @@ The log should say `device: cuda` and name the GPU. The last lines of `metrics.j
 
 If something went wrong, the error is in `logs/slurm-<jobid>.err`.
 
-## 7. Get the results back
+## 8. Get the results back
 
 Commit the metrics on Delta and push:
 
