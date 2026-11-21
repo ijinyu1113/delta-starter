@@ -10,14 +10,14 @@ The job trains a small network to compute `(a + b) mod 97`. It finishes in under
 | `job.slurm` | The batch script that asks Slurm for one GPU and runs `train.py`. |
 | `logs/` | Where Slurm writes the job's printed output. |
 
-## 0. Put this repo on your GitHub (once)
+## 0. Fork this repo (once)
 
-Create an empty repo named `delta-starter` on GitHub, then on your laptop:
+On https://github.com/ijinyu1113/delta-starter, click **Fork**. That gives you your own copy at `github.com/<your-username>/delta-starter`, which you can push to.
+
+Then clone your fork to your laptop:
 
 ```bash
-cd delta-starter
-git remote add origin https://github.com/<your-username>/delta-starter.git
-git push -u origin main
+git clone https://github.com/<your-username>/delta-starter.git
 ```
 
 ## 1. Log in to Delta
